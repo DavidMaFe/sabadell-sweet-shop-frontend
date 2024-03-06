@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  web:
+    restart: always
+    ports:
+      - "${PROJECT_PORT}:80"
+    volumes:
+      - /home/${COMPOSE_PROJECT_NAME}/static:/code/server/static
+      - /home/${COMPOSE_PROJECT_NAME}:/home/${COMPOSE_PROJECT_NAME}

@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  web:
+    image: ${COMPOSE_PROJECT_NAME}_v${PROJECT_VERSION}
+    environment:
+      DEVELOPMENT: 'false'
+      DEBUG: 'false'
+      TEST: 'false'
