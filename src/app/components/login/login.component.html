@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="login-container">
+    <span>
+        <p class="login-text">Login Sabadell Sweet Shop</p>
+    </span>
+    <form action="#">
+        <div class="login-input">
+            <input type="text" [(ngModel)]="loginObject.username" name="username" placeholder="Username" required>
+            <label for="email">Username</label>
+        </div>
+        <div class="login-input">
+            <input type="password" [(ngModel)]="loginObject.password" name="password" placeholder="Password" required>
+            <label for="password">Password</label>
+        </div>
+    </form>
+    <button class="login-button" (click)="onLogin()">Login</button>
+</div>
