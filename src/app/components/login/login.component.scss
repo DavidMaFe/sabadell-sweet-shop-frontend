@@ -1,0 +1,26 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: #6600ff;
+    width: 30%;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.login-text {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    margin-top: 20px;
+    width: 120px;
+    height: 40px;
+    background-color: #557bff;
+    font-size: medium;
+    font-family: 'Courier New', Courier, monospace;
+}
