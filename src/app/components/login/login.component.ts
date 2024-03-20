@@ -1,7 +1,8 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router} from '@angular/router';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +17,22 @@ export class LoginComponent {
     this.loginObject = new Login('', '');
   }
 
-  onLogin() {
-    this.http.post('https://dummyjson.com/auth/login', this.loginObject)
-      .subscribe((response:any) => {
-        if(response.id){
-          this.router.navigate(['/dashboard']);
-        } else {
-          alert(response.message);
-        }
-      });
+  private handleLoginError(error: HttpErrorResponse) {
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Login failed'));
+  }
+
+  onLogin(): Observable<Login> {
+    return this.http.post<Login>('https://dummyjson.com/auth/login', this.loginObject).pipe(
+      catchError(this.handleLoginError)
+    );
+  }
+
+  loginService() {
+    this.onLogin().subscribe({
+      complete: () => this.router.navigate(['/dashboard']),
+      error: () => alert('Login failed')
+    });
   }
 }
 
